@@ -45,6 +45,7 @@ if __name__ == '__main__':
     test_set = sys.argv[6]
 
     paths = read_paths(data_dir, train_set)
+    random.seed(416)
     random.shuffle(paths)
     dev_data_size = int(len(paths) * dev_proportion)
     train_paths = paths[:-dev_data_size]
@@ -67,10 +68,8 @@ if __name__ == '__main__':
             filename = path.strip().split('/')[-1]
             f.write(f'{filename}\n')
 
-    for dset, paths in zip(['dev', 'test'], \
-            [dev_paths, test_paths]):
-    # for dset, paths in zip(['train', 'dev', 'test'], \
-    #         [train_paths, dev_paths, test_paths]):
+    for dset, paths in zip(['train', 'dev', 'test'], \
+            [train_paths, dev_paths, test_paths]):
         print(f'processing {dset} set, {len(paths)} files')
         data = {}
         output_path = os.path.join(output_dir, f'{dset}.pkl')

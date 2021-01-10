@@ -47,6 +47,7 @@ if __name__ == '__main__':
     n_utts_attr = int(sys.argv[7])
 
     speaker_ids = read_speaker_info(speaker_info_path)
+    random.seed(416)
     random.shuffle(speaker_ids)
 
     train_speaker_ids = speaker_ids[:-test_speakers]
